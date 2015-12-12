@@ -13,12 +13,15 @@ public Material secondMaterial;
 private float startTime;
 private float stopTime;
 
+public float kill_time = -1.0f;
+private float kill_elapsed = 0.0f;
+
 //the time at which this came into existence
 private bool  isReallyOn;
 
 void Start (){
 	isReallyOn = GetComponent<ParticleEmitter>().emit;
-
+    
     //this kind of emitter should always start off
     GetComponent<ParticleEmitter>().emit = false;
 	
@@ -31,6 +34,12 @@ void Start (){
 }
 
 void FixedUpdate (){
+    if (kill_time > 0.0f) {
+        kill_elapsed += Time.deltaTime;
+        if (kill_elapsed > kill_time)
+            Destroy(gameObject);
+    }
+
 	//is the start time passed? turn emit on
 	if (Time.time > startTime)
 	{

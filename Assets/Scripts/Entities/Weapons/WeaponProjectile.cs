@@ -27,6 +27,8 @@ public class WeaponProjectile : Damagable {
 	// Use this for initialization
 	protected override void Start()
     {
+        base.Start();
+
         audio_src = gameObject.AddComponent<AudioSource>();
         if (shot_sound)
         {
@@ -38,6 +40,8 @@ public class WeaponProjectile : Damagable {
 	// Update is called once per frame
 	protected override void Update()
     {
+        base.Update();
+
         if (sound_timer > 0.0f)
         {
             sound_timer += Time.deltaTime;

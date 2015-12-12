@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : Damagable {
     // movement
     public Vector3 input;
     public float move_speed = 15.0f;
@@ -22,8 +22,12 @@ public class Player : MonoBehaviour {
     private CrossHair cross_hair_instance_;
 
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+        
+        health_bar_instance.GetComponent<Transform>().localEulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
+        
         cross_hair_instance_ = Instantiate(
             cross_hair_prefab_,
             GetComponent<Transform>().position,
@@ -32,25 +36,45 @@ public class Player : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    protected override void Update () {
+        base.Update();
+
         HandleGravity();
         HandleMovement();
         HandleFire();
     }
+
+    // handles collision
+    protected override void OnCollisionEnter(Collision col)
+    {
+        DealDamage(1);
+    }
     
     // Controls custom gravity
-    void HandleGravity() {
+    void HandleGravity()
+    {
         GetComponent<Rigidbody>().AddForce(
             0.25f * Physics.gravity * GetComponent<Rigidbody>().mass   
         );
     }
 
+    protected override void HandleVanish()
+    {
+        float y = GetComponent<Transform>().position.y;
+
+        if (Mathf.Abs(y) > y_vanish)
+        {
+            Vector3 pos = GetComponent<Transform>().position;
+            GetComponent<Transform>().position = new Vector3(pos.x, y_vanish, pos.z);
+        }
+    }
+
     // Controls movement input
     void HandleMovement() {
-        float x_pos = GetComponent<Transform>().position.x;
-        if (Mathf.Abs(x_pos) > x_teleport)
-            HandleTeleport(x_pos);
-
+        float x = GetComponent<Transform>().position.x;
+        if (Mathf.Abs(x) > x_teleport)
+            HandleTeleport(x);
+    
         HandleForce();
     }
 

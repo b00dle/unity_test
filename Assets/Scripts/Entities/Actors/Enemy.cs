@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : Damagable {
 
-	// Use this for initialization
-	void Start () {
-	
+    // Use this for initialization
+	protected override void Start() {
+        base.Start();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    // Update is called once per frame
+    protected override void Update() {
+        base.Update();
+    }
 }

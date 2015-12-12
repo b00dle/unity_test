@@ -10,11 +10,12 @@ public class Bullet : WeaponProjectile {
     // overrides BC Start()
     protected override void Start()
     {
+        // BC start
         base.Start();
+
+        // shorten destroy time
         if(detonator_prefab)
-        {
             detonator_prefab.destroyTime = 2.5f;
-        }
     }
     
     // overrides BC Update()
@@ -23,9 +24,7 @@ public class Bullet : WeaponProjectile {
         // calc flying distance
         float distance = shot_speed * Time.deltaTime;
         Vector3 new_pos = GetComponent<Transform>().position + distance * shot_direction;
-        if (Mathf.Abs(new_pos.x) > 20.0f || Mathf.Abs(new_pos.y) > 20.0f)
-            Die(true);
-
+        
         // apply new position
         GetComponent<Transform>().position = new_pos;
 

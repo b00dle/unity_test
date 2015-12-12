@@ -63,10 +63,13 @@
      <Compile Include="Assets\Detonator Explosion Framework\TestScene\DetonatorTest.cs" />
      <Compile Include="Assets\Detonator Explosion Framework\TestScene\TouchToMouse.cs" />
      <Compile Include="Assets\Scripts\Controls\CrossHair.cs" />
+     <Compile Include="Assets\Scripts\Controls\EnemyFactory.cs" />
      <Compile Include="Assets\Scripts\Controls\MainScript.cs" />
      <Compile Include="Assets\Scripts\Entities\Actors\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Entities\Actors\Obstacle.cs" />
      <Compile Include="Assets\Scripts\Entities\Actors\Player.cs" />
      <Compile Include="Assets\Scripts\Entities\Damagable.cs" />
+     <Compile Include="Assets\Scripts\Entities\HealthBar.cs" />
      <Compile Include="Assets\Scripts\Entities\Weapons\Bomb.cs" />
      <Compile Include="Assets\Scripts\Entities\Weapons\Bullet.cs" />
      <Compile Include="Assets\Scripts\Entities\Weapons\WeaponProjectile.cs" />
